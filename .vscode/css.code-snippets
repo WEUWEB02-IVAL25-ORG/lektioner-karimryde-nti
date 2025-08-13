@@ -1,0 +1,20 @@
+{
+	"CSS reset": {
+		"scope": "css",
+		"prefix": "reset",
+		"description": "Enkel CSS reset",
+		"body": [
+			"/* Enkel CSS-reset */",
+			"html {",
+			"\tbox-sizing: border-box;",
+			"}",
+			"*, *:before, *:after {",
+			"\tbox-sizing: inherit;",
+			"}",
+			"body, h1, h2, h3, h4, h5, h6, p, ul {",
+			"\tmargin: 0;",
+			"\tpadding: 0;",
+			"}"
+		]
+	}
+}

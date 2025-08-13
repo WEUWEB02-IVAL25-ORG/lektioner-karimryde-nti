@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "emmanuelbeziat.vscode-great-icons",
+        "eliostruyf.vscode-hide-comments",
+        "alefragnani.project-manager",
+        "chrisdias.vscode-opennewinstance",
+        "ritwickdey.LiveServer"
+    ]
+}

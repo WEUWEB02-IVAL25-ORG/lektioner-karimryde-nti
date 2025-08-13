@@ -1,0 +1,21 @@
+{
+	"HTML5_grundkod": {
+		"scope": "html",
+		"prefix": "html5",
+		"description": "HTML5 grundkod",
+		"body": [
+			"<!DOCTYPE html>",
+			"<html lang=\"sv\">",
+			"<head>",
+			"\t<meta charset=\"utf-8\">",
+			"\t<meta name=\"viewport\" content=\"width=device-width, ,initial-scale=1\">",
+			"\t<title></title>",
+			"\t<link rel=\"stylesheet\" href=\"style.css\">",
+			"</head>",
+			"<body>",
+			"\t${1}",
+			"</body>",
+			"</html>"
+		]
+	}
+}
