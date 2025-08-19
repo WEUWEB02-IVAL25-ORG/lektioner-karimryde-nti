@@ -25,16 +25,11 @@
         "scminput": false
     },
   "extensions.allowed": {
-    "ms-dotnettools.csharp": true,
     "emmanuelbeziat.vscode-great-icons": true,
     "chrisdias.vscode-opennewinstance": true,
     "k--kato.docomment": true,
     "eliostruyf.vscode-hide-comments": true,
-    "richardzampieriprog.csharp-snippet-productivity": true,
-    "arcsine.chronicler": true,
-    "gabrielgrinberg.auto-run-command": true,
     "angelo-breuer.clock": true,
-    "ms-dotnettools.vscodeintellicode-csharp": false,
     "GitHub.copilot": false
   },
 }
