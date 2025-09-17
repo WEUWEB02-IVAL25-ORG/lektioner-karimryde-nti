@@ -30,3 +30,24 @@ knapp.addEventListener('click', function () {
         rubrik.style.fontFamily = "serif";
     }
 });
+///////////////////////////////////////////////////
+
+// Välj formulärknappen (input)
+let fknapp = document.querySelector('input[type="submit"]');
+
+// Välj textrutorna
+let fnamn = document.querySelector('input');
+let femail = document.querySelector('input[type="email"]');
+let fmeddelande = document.querySelector('textarea');
+
+// Lyssna på "click"-event (händelse)
+fknapp.addEventListener("click", function (e) {
+    // Hindra att sidand laddas om
+    e.preventDefault();
+
+    // Läs av det som står i textrutorna och lägg i en variabel
+    let ftext = fnamn.value + "\n" + femail.value + "\n" + fmeddelande.value;
+
+    // Skriv ut bekräftelse
+    fmeddelande.value = "Tack för meddelande!\nDu skrev:\n" + ftext;
+});
