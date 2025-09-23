@@ -40,14 +40,28 @@ let fnamn = document.querySelector('input');
 let femail = document.querySelector('input[type="email"]');
 let fmeddelande = document.querySelector('textarea');
 
+// Välja dialog och knappen i dialog
+var modal = document.querySelector('dialog');
+var modalOk = document.querySelector('dialog button');
+var modalText = document.querySelector('dialog p');
+
 // Lyssna på "click"-event (händelse)
 fknapp.addEventListener("click", function (e) {
     // Hindra att sidand laddas om
     e.preventDefault();
 
     // Läs av det som står i textrutorna och lägg i en variabel
-    let ftext = fnamn.value + "\n" + femail.value + "\n" + fmeddelande.value;
+    let ftext = fnamn.value + "<br>" + femail.value + "<br>" + fmeddelande.value;
 
     // Skriv ut bekräftelse
-    fmeddelande.value = "Tack för meddelande!\nDu skrev:\n" + ftext;
+    modalText.innerHTML = "Du skrev:<br>" + ftext;
+
+    // Visa modal
+    modal.showModal();
 });
+
+// Vid klick på knappen modalOK
+// modal.close()
+modalOk.addEventListener('click', function () {
+    modal.close();
+})
