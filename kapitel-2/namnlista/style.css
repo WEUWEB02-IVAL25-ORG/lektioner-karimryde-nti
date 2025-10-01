@@ -54,3 +54,6 @@ img {
     background-color: #DDD;
     padding: 5px;
 }
+.namnlista {
+    list-style-type: none;
+}
