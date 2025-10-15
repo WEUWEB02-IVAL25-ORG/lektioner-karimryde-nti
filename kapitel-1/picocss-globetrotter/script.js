@@ -32,13 +32,13 @@ knapp.addEventListener('click', function () {
 });
 ///////////////////////////////////////////////////
 
-// Välj formulärknappen (input)
-let fknapp = document.querySelector('input[type="submit"]');
-
 // Välj textrutorna
 let fnamn = document.querySelector('input');
 let femail = document.querySelector('input[type="email"]');
 let fmeddelande = document.querySelector('textarea');
+
+// Välj formulärknappen (input)
+let fknapp = document.querySelector('input[type="submit"]');
 
 // Välja dialog och knappen i dialog
 var modal = document.querySelector('dialog');
