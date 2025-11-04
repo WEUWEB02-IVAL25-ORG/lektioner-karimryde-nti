@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hej Chart.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    </head>
+<body>
+    <h1>Min första graf</h1>
+    <div class="kort">
+        <canvas id="graf"></canvas>
+        <canvas id="stapel"></canvas>
+    </div>
+    <script>
+        const graf = document.querySelector('#graf');
+        new Chart(graf, {
+            type: 'line',
+            data: {
+                labels: ['Mån','Tis','Ons','Tors','Fre'],
+                datasets: [{
+                    label: 'Dagens högsta temperatur',
+                    data: [10, 12, 13, 12, 12, 11, 12, 10], // Ändra ett tal här!
+                    borderColor: 'red',
+                    backgroundColor: 'rgba(173,216,230,0.3)',
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: { scales: { y: { beginAtZero: true } } }
+        });
+        const stapel = document.querySelector('#stapel');
+        new Chart(stapel, {
+            type: 'bar',
+            data: {
+                labels: ['Röda', 'Gröna', 'Blåa'],
+                datasets: [{
+                    label: "Röster på blocken",
+                    data: [40, 4, 55],
+                    backgroundColor: ['red', 'green', 'blue']
+                }]
+            }
+        })
+    </script>
+</body>
+</html>
