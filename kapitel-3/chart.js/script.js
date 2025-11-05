@@ -22,23 +22,26 @@ fetch(url)                  // Hämta
 
         console.log(datum, temp);
         
+        // Fyll arrayer med temperatur och label
+        temps.push(temp);
+        labels.push(datum);
     });
 
+    // Rita ut
+    new Chart(graf, {
+        type: 'line',
+        data: {
+            labels,
+            datasets: [{
+                label: 'Dagens högsta temperatur',
+                data: temps,
+                borderColor: 'red',
+                backgroundColor: 'rgba(173,216,230,0.3)',
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: { scales: { y: { beginAtZero: true } } }
+    });
 })
 
-// Rita ut
-// new Chart(graf, {
-//     type: 'line',
-//     data: {
-//         labels,
-//         datasets: [{
-//             label: 'Dagens högsta temperatur',
-//             temps,
-//             borderColor: 'red',
-//             backgroundColor: 'rgba(173,216,230,0.3)',
-//             fill: true,
-//             tension: 0.3
-//         }]
-//     },
-//     options: { scales: { y: { beginAtZero: true } } }
-// });
