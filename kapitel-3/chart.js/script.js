@@ -2,7 +2,7 @@ const graf = document.querySelector('#graf');
 
 // Hämta temperaturprognosen från SMHI open api
 // För Stockholm, dvs longitud=18.06, latitud=59.33
-const url = "https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/18.06/lat/59.33/data.json?authuser=0";
+const url = "https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/18.06/lat/59.33/data.json";
 
 fetch(url)                  // Hämta
 .then(svar => svar.json())  // Packa upp json
