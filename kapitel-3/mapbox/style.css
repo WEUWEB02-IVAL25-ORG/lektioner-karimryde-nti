@@ -1,0 +1,12 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.kontainer {
+    width: 900px;
+    margin: 0 ;
+}
+#karta {
+    width: 100%;
+    height: 600px;
+}
