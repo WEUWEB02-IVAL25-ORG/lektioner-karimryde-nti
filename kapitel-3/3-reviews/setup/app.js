@@ -80,3 +80,53 @@ prevBtn.addEventListener('click', function () {
     job.textContent = review.job;
     info.textContent = review.text;
 })
+
+/*
+Extra uppgifter:
+
+1. Slump utan upprepning
+Gör “Surprise me!” så att den väljer en annan post än den som visas just nu. Hantera fallet när det bara finns en post.
+
+2. Tangentbordsstyrning
+Vänsterpil = föregående, högerpil = nästa, mellanslag = slumpa. Fungerar även när fokus ligger på knapparna.
+
+3. Indikator “x av n”
+Visa under bilden vilken post som visas, t.ex. “2/4”. Uppdateras vid alla byten.
+
+4. Dynamisk alt-text
+Sätt bildens alt-text utifrån namn och jobb varje gång posten byts.
+
+5. aria-live för skärmläsare
+Lägg in en dold live-region i HTML och uppdatera den med namn + jobb vid varje byte.
+
+6. Fade-animation vid byte
+Låt bild och texter fade:a ut/in vid byte med CSS-klasser och transitioner. Inga externa bibliotek.
+
+7. Filtrera på yrkesroll
+Lägg till en <select> där man kan välja roll (t.ex. “web designer”). Bläddra bara inom matchande poster. Fallback: alla poster.
+
+8. Förladdning av bild + fallback
+Förladda nästa bild innan den visas. Om den inte laddas: visa en enkel placeholder/fallback i stället.
+
+9. Auto-play med paus
+Gör att recensionerna byter automatiskt var 5:e sekund. Pausa när muspekaren är över kortet eller när sidan inte är aktiv.
+
+10. Favoritmarkering
+Lägg till en knapp “Spara favorit”. Visa en liten stjärna på favoriten och spara valet med localStorage.
+
+11. Cykla runt korrekt
+När man står på sista posten och trycker “nästa” → hoppa till första. När man står på första och trycker “föregående” → hoppa till sista.
+
+12. Disable vid laddning
+När en ny post laddas (t.ex. bild-förladdning), inaktivera knapparna kort och aktivera dem igen när allt är klart.
+
+13. Tangent “Home” och “End”
+Home = hoppa till första posten. End = hoppa till sista posten.
+
+14. Räkna klick
+Visa hur många gånger användaren bytt post under sessionen. Återställ när sidan laddas om.
+
+15. Felmeddelande i sidan
+Om något går fel (t.ex. bildfel), visa ett tydligt inline-meddelande över kortet. Inga alert()-rutor.
+
+*/

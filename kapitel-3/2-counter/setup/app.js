@@ -35,6 +35,7 @@ btns.forEach(function (btn) {
 });
 
 /*
+Extra uppgifter:
 
 1. Byt språk på knapparna
 Byt text till svenska: “Minska”, “Nollställ”, “Öka”.
