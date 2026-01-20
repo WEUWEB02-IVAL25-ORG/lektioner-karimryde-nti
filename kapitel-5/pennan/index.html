@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="800" height="600"></canvas>
+    <script>
+        const c = document.querySelector('canvas');
+        const ctx = c.getContext('2d');
+
+        // Välj pennans färg
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 3;
+
+        // Börjar en bana
+        ctx.beginPath();
+        ctx.moveTo(100, 100);
+        ctx.lineTo(200, 100);
+        ctx.lineTo(200, 200);
+        ctx.lineTo(300, 200);
+        ctx.lineTo(300, 100);
+        ctx.lineTo(400, 100);
+        ctx.lineTo(400, 300);
+        ctx.lineTo(100, 300);
+        ctx.lineTo(100, 100);
+        // Färga banan
+        ctx.stroke()
+        ctx.closePath()
+
+        // Lyft penna till 100, 350
+        ctx.strokeStyle = "blue";
+        ctx.lineWidth = 10;
+        ctx.beginPath()
+        ctx.moveTo(100, 350);
+        ctx.lineTo(400, 350);
+        ctx.lineTo(400, 450);
+        // ctx.lineTo(100, 450);
+        // ctx.lineTo(100, 350);
+        ctx.stroke()
+        ctx.fillStyle = "yellow"
+        ctx.fill()
+        ctx.closePath()
+
+    </script>
+</body>
+</html>

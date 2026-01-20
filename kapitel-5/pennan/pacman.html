@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rita ett hus</title>
+</head>
+<body>
+    <canvas width="800" height="600"></canvas>
+    <script>
+        const c = document.querySelector('canvas');
+        const ctx = c.getContext('2d');
+
+        // Rita en gul sol
+        ctx.beginPath()
+        ctx.arc(300, 150, 50, 0.5, 5.4)
+        ctx.lineTo(300, 150)
+        ctx.fillStyle = "yellow"
+        ctx.fill()
+        ctx.closePath()
+
+        // Rita ut en bild
+        const image = new Image();
+        image.src = "./donald-duck.png";
+        ctx.drawImage(image, 100, 100)
+    </script>
+</body>
+</html>
