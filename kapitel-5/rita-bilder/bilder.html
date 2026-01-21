@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="800" height="600"></canvas>
+    <script>
+        const c = document.querySelector('canvas')
+        const ctx = c.getContext('2d')
+
+        // Skapa ett bildobjekt som kan fyllas med en bild
+        const bild = new Image()
+        // Peka ut bilden skall ligga i bildobjektet
+        bild.src = "./sun.png"
+        // Rita ut bilden när den inladdad
+        bild.addEventListener('load', function() {
+            ctx.drawImage(bild, 100, 100)
+        })
+    </script>
+</body>
+</html>
