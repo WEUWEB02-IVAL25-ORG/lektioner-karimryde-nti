@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas width="800" height="600"></canvas>
+    <script>
+        const c = document.querySelector('canvas')
+        const ctx = c.getContext('2d')
+
+        // // Bild 1
+        // const bild1 = new Image()
+        // // Peka ut bilden skall ligga i bildobjektet
+        // bild1.src = "./intricate-explorer-L6-l45Y_om0-unsplash.jpg"
+        // // Rita ut bilden när den inladdad
+        // bild1.addEventListener('load', function() {
+        //     ctx.drawImage(bild1, 0, 0, 800, 600)
+        // })
+        
+        // // Bild 2
+        // const bild2 = new Image()
+        // // Peka ut bilden skall ligga i bildobjektet
+        // bild2.src = "./rocket.gif"
+        // // Rita ut bilden när den inladdad
+        // bild2.addEventListener('load', function() {
+        //     ctx.drawImage(bild2, 200, 300, 200, 200)
+        // })
+        
+        // // Bild 3
+        // const bild3 = new Image()
+        // // Peka ut bilden skall ligga i bildobjektet
+        // bild3.src = "./sun.png"
+        // // Rita ut bilden när den inladdad
+        // bild3.addEventListener('load', function() {
+        //     ctx.drawImage(bild3, 50, 500)
+        // })
+
+        // Alla bilder
+        let antalKlara = 0
+        const bakgrund = new Image()
+        const bild1 = new Image()
+        const bild2 = new Image()
+        bakgrund.src = "./intricate-explorer-L6-l45Y_om0-unsplash.jpg"
+        bild1.src = "./rocket.gif"
+        bild2.src = "./sun.png"
+
+        // Funktion som kollar att alla bilder är inladdade
+        function bildLaddad() {
+            antalKlara++;
+            if (antalKlara == 3) {
+                ctx.drawImage(bakgrund, 0, 0, 800, 600)
+                ctx.drawImage(bild1, 200, 300, 200, 200)
+                ctx.drawImage(bild2, 50, 500)
+            }
+        }
+
+        // Ladda bilderna
+        bakgrund.addEventListener('load', bildLaddad)
+        bild1.addEventListener('load', bildLaddad)
+        bild2.addEventListener('load', bildLaddad)
+    </script>
+</body>
+</html>

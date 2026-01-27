@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loopar</title>
+    <style>
+        body {
+            background-color: #000;
+            padding: 50px;
+        }
+        canvas {
+            background-color: #fff;
+        }
+        p {
+            background-color: #fff;
+            padding: 20px;
+            font-size: 30px;
+            width: 800px;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="800" height="700"></canvas>
+    <p>text</p>
+    <script>
+        const c = document.querySelector('canvas')
+        const koord = document.querySelector('p')
+        const ctx = c.getContext('2d')
+
+        // En loop istället
+        let x = 50
+        let y = 300
+        let dx = 3
+        let dy = 2
+
+        // Animationsloopen
+        function loop() {
+            // Rensa canvas
+            ctx.clearRect(0, 0, 800, 700)
+            
+            // Rita ut bollen
+            ctx.fillStyle = 'red'
+            ctx.beginPath()
+            ctx.arc(x, y, 20, 0, Math.PI * 2)
+            ctx.fill()
+            ctx.closePath()
+
+            // Uppdatera position
+            x += dx
+            y += dy
+
+            // Skriv ut x & y
+            koord.innerText = 'x=' + x + ' y=' + y
+
+            // Börja om när nått en kant
+            if (x > 800 - 20) {
+                dx = -dx
+            }
+            if (x < 0 + 20) {
+                dx = -dx
+            }
+            if (y > 700 - 20) {
+                dy = -dy
+            }
+            if (y < 0 + 20) {
+                dy = -dy
+            }
+
+            requestAnimationFrame(loop)
+        }
+
+        // Starta animationsloopen
+        loop()
+
+    </script>
+</body>
+</html>
