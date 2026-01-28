@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gameloopen</title>
+    <style>
+        body {
+            background-color: #555;
+            padding: 20px;
+        }
+        canvas {
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="800" height="600"></canvas>
+    <script>
+        const canvas = document.querySelector('canvas')
+        const ctx = canvas.getContext('2d')
+
+        // Variabler
+        let x = 100
+        let y = 100
+        let bredd = 100
+        let höjd = 50
+        let färg = 0
+        let alfa = 0
+
+        // Animationsloopen
+        function gameLoop() {
+            // Updatering = variera variablerna
+            bredd = 200 * Math.random()
+            höjd = 400 * Math.random()
+            färg += 10
+            x = 800 * Math.random()
+            y = 600 * Math.random()
+            alfa = Math.random()    // 0 - 1
+
+            // Radera canvas
+            //ctx.clearRect(0, 0, 800, 600)
+            
+            // Rita en rektangel
+            ctx.fillStyle = "hsl(" + färg + ", 100%, 50%)"
+            ctx.globalAlpha = alfa
+            ctx.fillRect(x, y, bredd, höjd) // x, y, b, h
+
+            // Rita en cirkel
+            //ctx.arc(x, y, bredd, 0, 6.28)
+            //ctx.fill()
+
+            // Upprepa
+            requestAnimationFrame(gameLoop)
+        }
+        gameLoop()
+    </script>
+</body>
+</html>
