@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moonlander</title>
+    <style>
+        body {
+            background: #272727;
+        }
+        canvas {
+            background: #000;
+            width: 700px;
+            margin: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="700" height="700"></canvas>
+    <script>
+        const c = document.querySelector('canvas')
+        const ctx = c.getContext('2d')
+
+        // Startposition
+        x = 350
+        y = 0
+
+        // Hastighet
+        dy = 1
+
+        // Månens gravitation
+        gravitation = 0.01
+
+        // Variabel som håller koll på motorn
+        let engineOn = false
+
+        // Ladda ikonen
+        const lander = new Image()
+        lander.src = "./moon-landing.png"
+
+        // Animationsloopen
+        function gameLoop() {
+            // Rensa canvas
+            ctx.clearRect(0, 0, 700, 700)
+
+            // Ändring i fallhastighet
+            dy += gravitation
+
+            // Ändring i position ned till månytan = 680
+            if (y <= 680 - 64) {
+                y += dy
+            }
+
+            // Lyssna på tangenten mellanslag (space)
+            window.addEventListener('keydown', function (e) {
+                if (e.code == 'Space') {
+                    engineOn = true
+                }
+            })
+            window.addEventListener('keyup', function (e) {
+                if (e.code == 'Space') {
+                    engineOn = false
+                }
+            })
+
+            // Om motorn är på
+            if (engineOn) {
+                dy -= 0.1
+            }
+
+            // Rita ut månytan
+            ctx.fillStyle = "#444"
+            ctx.fillRect(0, 680, 700, 20)
+
+            // Rita ut månlandaren
+            ctx.drawImage(lander, x, y)
+
+            // Upprepa
+            requestAnimationFrame(gameLoop)
+        }
+        gameLoop()
+    </script>
+</body>
+</html>
