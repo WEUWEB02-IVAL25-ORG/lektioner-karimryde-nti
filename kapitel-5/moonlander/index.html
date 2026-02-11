@@ -8,6 +8,7 @@
         body {
             background: #272727;
         }
+
         canvas {
             background: #000;
             width: 700px;
@@ -44,30 +45,42 @@
             // Rensa canvas
             ctx.clearRect(0, 0, 700, 700)
 
-            // Ändring i fallhastighet
-            dy += gravitation
-
-            // Ändring i position ned till månytan = 680
+            // När vi träffar månytan
             if (y <= 680 - 64) {
+                // Ändring i fallhastighet
+                dy += gravitation
+
+                // Ändring i position ned till månytan = 680
                 y += dy
+
+                // Lyssna på tangenten mellanslag (space)
+                window.addEventListener('keydown', function (e) {
+                    if (e.code == 'Space') {
+                        engineOn = true
+                    }
+                })
+                window.addEventListener('keyup', function (e) {
+                    if (e.code == 'Space') {
+                        engineOn = false
+                    }
+                })
+
+                // Om motorn är på
+                if (engineOn) {
+                    dy -= 0.1
+
+                    // Rita ut raketlågan
+                    ritaRaketlåga()
+                }
+            } else {
+                dy = 0
             }
 
-            // Lyssna på tangenten mellanslag (space)
-            window.addEventListener('keydown', function (e) {
-                if (e.code == 'Space') {
-                    engineOn = true
-                }
-            })
-            window.addEventListener('keyup', function (e) {
-                if (e.code == 'Space') {
-                    engineOn = false
-                }
-            })
-
-            // Om motorn är på
-            if (engineOn) {
-                dy -= 0.1
-            }
+            // Rita ut instrumentpanel (HUD)
+            ctx.fillStyle = "#fff"
+            ctx.font = "20px Monospace"
+            ctx.fillText("Hastighet: " + dy.toFixed(2), 10, 30)
+            ctx.fillText("Höjd: " + (680 - 62.55 - y).toFixed(2), 10, 50)
 
             // Rita ut månytan
             ctx.fillStyle = "#444"
@@ -80,6 +93,17 @@
             requestAnimationFrame(gameLoop)
         }
         gameLoop()
+
+        function ritaRaketlåga() {
+            ctx.beginPath()
+            ctx.moveTo(x + 28, y + 50)
+            ctx.lineTo(x + 20, y + 70)
+            ctx.lineTo(x + 32, y + 70 + Math.random() * 30)
+            ctx.lineTo(x + 42, y + 70)
+            ctx.lineTo(x + 36, y + 50)
+            ctx.fillStyle = "orange"
+            ctx.fill()
+        }
     </script>
 </body>
 </html>
