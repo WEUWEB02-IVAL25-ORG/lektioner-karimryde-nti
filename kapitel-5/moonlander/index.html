@@ -53,47 +53,49 @@
                 // Ändring i position ned till månytan = 680
                 y += dy
 
-                // Lyssna på tangenten mellanslag (space)
-                window.addEventListener('keydown', function (e) {
-                    if (e.code == 'Space') {
-                        engineOn = true
-                    }
-                })
-                window.addEventListener('keyup', function (e) {
-                    if (e.code == 'Space') {
-                        engineOn = false
-                    }
-                })
+                inputSpelare()
 
                 // Om motorn är på
                 if (engineOn) {
                     dy -= 0.1
-
-                    // Rita ut raketlågan
                     ritaRaketlåga()
                 }
             } else {
                 dy = 0
             }
 
-            // Rita ut instrumentpanel (HUD)
-            ctx.fillStyle = "#fff"
-            ctx.font = "20px Monospace"
-            ctx.fillText("Hastighet: " + dy.toFixed(2), 10, 30)
-            ctx.fillText("Höjd: " + (680 - 62.55 - y).toFixed(2), 10, 50)
-
-            // Rita ut månytan
-            ctx.fillStyle = "#444"
-            ctx.fillRect(0, 680, 700, 20)
-
-            // Rita ut månlandaren
-            ctx.drawImage(lander, x, y)
+            ritaHUD()
+            ritaMånyta()
+            ritaMånlandare()
 
             // Upprepa
             requestAnimationFrame(gameLoop)
         }
         gameLoop()
 
+         // Lyssna på tangenten mellanslag (space)
+        function inputSpelare() {
+            window.addEventListener('keydown', function (e) {
+                if (e.code == 'Space') {
+                    engineOn = true
+                }
+            })
+            window.addEventListener('keyup', function (e) {
+                if (e.code == 'Space') {
+                    engineOn = false
+                }
+            })
+        }
+
+        // Rita ut instrumentpanel (HUD)
+        function ritaHUD() {
+            ctx.fillStyle = "#fff"
+            ctx.font = "20px Monospace"
+            ctx.fillText("Hastighet: " + dy.toFixed(2), 10, 30)
+            ctx.fillText("Höjd: " + (680 - 62.55 - y).toFixed(2), 10, 50)
+        }
+
+        // Rita ut raketlågan
         function ritaRaketlåga() {
             ctx.beginPath()
             ctx.moveTo(x + 28, y + 50)
@@ -103,6 +105,17 @@
             ctx.lineTo(x + 36, y + 50)
             ctx.fillStyle = "orange"
             ctx.fill()
+        }
+
+        // Rita ut månytan
+        function ritaMånyta() {
+            ctx.fillStyle = "#444"
+            ctx.fillRect(0, 680, 700, 20)
+        }
+
+        // Rita ut månlandaren
+        function ritaMånlandare() {
+            ctx.drawImage(lander, x, y)
         }
     </script>
 </body>
