@@ -46,6 +46,9 @@
         const lander = new Image()
         lander.src = "./moon-landing.png"
 
+        // Lyssna på spelarens input
+        inputSpelare()
+
         // Animationsloopen
         function gameLoop() {
             // Rensa canvas
@@ -59,8 +62,6 @@
                 // Ändring i position ned till månytan = 680
                 y += dy
                 h = 620 - y
-
-                inputSpelare()
 
                 // Om motorn är på
                 if (engineOn && fuel > 0) {
