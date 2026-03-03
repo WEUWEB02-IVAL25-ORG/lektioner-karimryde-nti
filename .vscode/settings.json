@@ -31,5 +31,6 @@
     "eliostruyf.vscode-hide-comments": true,
     "angelo-breuer.clock": true,
     "GitHub.copilot": false
-  },
+},
+"liveServer.settings.port": 5501,
 }

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gameloopen</title>
+    <style>
+        body {
+            background-color: #555;
+            padding: 20px;
+        }
+        canvas {
+            background-color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="800" height="600"></canvas>
+    <script>
+        const canvas = document.querySelector('canvas')
+        const ctx = canvas.getContext('2d')
+
+        // Ladda in bilden av rymskeppet
+        const ship = new Image()
+        ship.src = "./battleship.png"
+
+        // Variabler
+        let shipX = 400 - 32
+        let shipY = 300
+        let directionH = ""
+        let directionV = ""
+
+        // Lyssna på tangeter: pil-vänster/pil-höger
+        window.addEventListener('keydown', function(e) {
+            if (e.code == 'ArrowRight') {
+                directionH = "R"
+            }
+            if (e.code == 'ArrowLeft') {
+                directionH = "L"
+            }
+            if (e.code == 'ArrowUp') {
+                directionV = "U"
+            }
+            if (e.code == 'ArrowDown') {
+                directionV = "D"
+            }
+        })
+        window.addEventListener('keyup', function(e) {
+            if (e.code == 'ArrowRight') {
+                directionH = ""
+            }
+            if (e.code == 'ArrowLeft') {
+                directionH = ""
+            }
+            if (e.code == 'ArrowUp') {
+                directionV = ""
+            }
+            if (e.code == 'ArrowDown') {
+                directionV = ""
+            }
+        })
+
+        // Animationsloopen
+        function gameLoop() {
+            // Radera canvas
+            ctx.clearRect(0, 0, 800, 600)
+
+            motion()
+            border()
+
+            // Rita ut rymdskeppet
+            ctx.drawImage(ship, shipX, shipY)
+
+            // Upprepa
+            requestAnimationFrame(gameLoop)
+        }
+        gameLoop()
+
+        function motion() {
+            if (directionH == "R") {
+                shipX += 5
+            }
+            if (directionH == "L") {
+                shipX -= 5
+            }
+            if (directionV == "D") {
+                shipY += 5
+            }
+            if (directionV == "U") {
+                shipY -= 5
+            }
+        }
+
+        function border() {
+            if (shipX > 800) {
+                shipX = 0
+            }
+            if (shipX < 0) {
+                shipX = 800
+            }
+        }
+    </script>
+</body>
+</html>
