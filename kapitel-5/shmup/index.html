@@ -30,6 +30,7 @@
         let shipY = 300
         let directionH = ""
         let directionV = ""
+        let shooting = false
 
         // Lyssna på tangeter: pil-vänster/pil-höger
         window.addEventListener('keydown', function (e) {
@@ -45,6 +46,9 @@
             if (e.code == 'ArrowDown') {
                 directionV = "D"
             }
+            if (e.code == 'Space') {
+                shooting = true
+            }
         })
         window.addEventListener('keyup', function (e) {
             if (e.code == 'ArrowRight') {
@@ -59,6 +63,9 @@
             if (e.code == 'ArrowDown') {
                 directionV = ""
             }
+            if (e.code == 'Space') {
+                shooting = false
+            }
         })
 
         // Animationsloopen
@@ -69,6 +76,7 @@
             motion()
             border()
             stars()
+            laser()
             rocketFlame()
             spaceship()
 
@@ -115,6 +123,13 @@
             ctx.lineTo(shipX + 36, shipY + 50)
             ctx.fillStyle = "orange"
             ctx.fill()
+        }
+
+        function laser() {
+            if (shooting) {
+                ctx.fillStyle = "white"
+                ctx.fillRect(shipX + 31, 0, 2, shipY)
+            }
         }
 
         function stars() {
