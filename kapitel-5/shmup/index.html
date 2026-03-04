@@ -9,6 +9,7 @@
             background-color: #555;
             padding: 20px;
         }
+
         canvas {
             background-color: #000000;
         }
@@ -31,7 +32,7 @@
         let directionV = ""
 
         // Lyssna på tangeter: pil-vänster/pil-höger
-        window.addEventListener('keydown', function(e) {
+        window.addEventListener('keydown', function (e) {
             if (e.code == 'ArrowRight') {
                 directionH = "R"
             }
@@ -45,7 +46,7 @@
                 directionV = "D"
             }
         })
-        window.addEventListener('keyup', function(e) {
+        window.addEventListener('keyup', function (e) {
             if (e.code == 'ArrowRight') {
                 directionH = ""
             }
@@ -67,9 +68,9 @@
 
             motion()
             border()
-
-            // Rita ut rymdskeppet
-            ctx.drawImage(ship, shipX, shipY)
+            stars()
+            rocketFlame()
+            spaceship()
 
             // Upprepa
             requestAnimationFrame(gameLoop)
@@ -98,6 +99,42 @@
             if (shipX < 0) {
                 shipX = 800
             }
+        }
+
+        // Rita ut rymdskeppet
+        function spaceship() {
+            ctx.drawImage(ship, shipX, shipY)
+        }
+
+        function rocketFlame() {
+            ctx.beginPath()
+            ctx.moveTo(shipX + 28, shipY + 50)
+            ctx.lineTo(shipX + 20, shipY + 70)
+            ctx.lineTo(shipX + 32, shipY + 70 + Math.random() * 30)
+            ctx.lineTo(shipX + 42, shipY + 70)
+            ctx.lineTo(shipX + 36, shipY + 50)
+            ctx.fillStyle = "orange"
+            ctx.fill()
+        }
+
+        function stars() {
+            ctx.fillStyle = "white"
+            ctx.fillRect(200, 150, 3, 3)
+            ctx.fillRect(20, 150, 4, 4)
+            ctx.fillRect(400, 250, 3, 3)
+            ctx.fillRect(700, 50, 4, 4)
+            ctx.fillRect(100, 450, 3, 3)
+            ctx.fillRect(120, 350, 3, 3)
+            ctx.fillRect(400, 650, 3, 3)
+            ctx.fillRect(600, 500, 3, 3)
+            ctx.fillRect(200, 50, 3, 3)
+            ctx.fillRect(20, 350, 3, 3)
+            ctx.fillRect(400, 550, 3, 3)
+            ctx.fillRect(500, 150, 4, 4)
+            ctx.fillRect(100, 150, 2, 2)
+            ctx.fillRect(720, 650, 4, 4)
+            ctx.fillRect(400, 350, 3, 3)
+            ctx.fillRect(500, 700, 2, 2)
         }
     </script>
 </body>
