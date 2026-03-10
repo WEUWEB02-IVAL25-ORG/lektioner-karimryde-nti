@@ -25,12 +25,32 @@
         const ship = new Image()
         ship.src = "./battleship.png"
 
+        // Ladda in bild av fiende 1
+        const enemy1 = new Image()
+        enemy1.src = "./ufo.png"
+        // Ladda in bild av fiende 2
+        const enemy2 = new Image()
+        enemy2.src = "./alien.png"
+
+        // Ladda in skottljud
+        const lazerShot = new Audio()
+        lazerShot.src = "./lazer-shot.wav"
+        // Ladda in explosionsljud
+        const explosion = new Audio()
+        explosion.src = "./explosion13.wav"
+
         // Variabler
         let shipX = 400 - 32
         let shipY = 300
         let directionH = ""
         let directionV = ""
         let shooting = false
+        let enemy1X = 750 * Math.random()
+        let enemy1Y = -100 * Math.random()
+        let enemy1Speed = 5 * Math.random()
+        let enemy2X = 750 * Math.random()
+        let enemy2Y = -100 * Math.random()
+        let enemy2Speed = 5 * Math.random()
 
         // Lyssna på tangeter: pil-vänster/pil-höger
         window.addEventListener('keydown', function (e) {
@@ -79,11 +99,30 @@
             laser()
             rocketFlame()
             spaceship()
+            enemies()
 
             // Upprepa
             requestAnimationFrame(gameLoop)
         }
         gameLoop()
+
+        // Rita ut fiender
+        function enemies() {
+            ctx.drawImage(enemy1, enemy1X, enemy1Y)
+            enemy1Y += enemy1Speed
+            ctx.drawImage(enemy2, enemy2X, enemy2Y)
+            enemy2Y += enemy2Speed
+
+            // Respawn fienden lämnar scenen
+            if (enemy1Y > 600) {
+                enemy1X = 750 * Math.random()
+                enemy1Y = -100 * Math.random()
+            }
+            if (enemy2Y > 600) {
+                enemy2X = 750 * Math.random()
+                enemy2Y = -100 * Math.random()
+            }
+        }
 
         function motion() {
             if (directionH == "R") {
@@ -127,6 +166,7 @@
 
         function laser() {
             if (shooting) {
+                lazerShot.play()
                 ctx.fillStyle = "white"
                 ctx.fillRect(shipX + 31, 0, 2, shipY)
             }
@@ -151,6 +191,8 @@
             ctx.fillRect(400, 350, 3, 3)
             ctx.fillRect(500, 700, 2, 2)
         }
+
+        // Ennemies
     </script>
 </body>
 </html>
