@@ -7,7 +7,8 @@
     <style>
         body {
             background-color: #555;
-            padding: 20px;
+            padding: 0;
+            margin: 0;
         }
 
         canvas {
@@ -31,6 +32,12 @@
         // Ladda in bild av fiende 2
         const enemy2 = new Image()
         enemy2.src = "./alien.png"
+        // Ladda in bild av fiende 3
+        const enemy3 = new Image()
+        enemy3.src = "./monster.png"
+        // Ladda in bild på en explosion
+        const blast = new Image()
+        blast.src = "./blast.png"
 
         // Ladda in skottljud
         const lazerShot = new Audio()
@@ -45,12 +52,18 @@
         let directionH = ""
         let directionV = ""
         let shooting = false
+        let blastTimer = 0
+        let blastX = 0
+        let blastY = 0
         let enemy1X = 750 * Math.random()
         let enemy1Y = -100 * Math.random()
-        let enemy1Speed = 5 * Math.random()
+        let enemy1Speed = 5 * Math.random() + 1
         let enemy2X = 750 * Math.random()
         let enemy2Y = -100 * Math.random()
-        let enemy2Speed = 5 * Math.random()
+        let enemy2Speed = 5 * Math.random() + 1
+        let enemy3X = 750 * Math.random()
+        let enemy3Y = -100 * Math.random()
+        let enemy3Speed = 5 * Math.random() + 1
 
         // Lyssna på tangeter: pil-vänster/pil-höger
         window.addEventListener('keydown', function (e) {
@@ -100,6 +113,7 @@
             rocketFlame()
             spaceship()
             enemies()
+            drawBlast()
 
             // Upprepa
             requestAnimationFrame(gameLoop)
@@ -112,6 +126,8 @@
             enemy1Y += enemy1Speed
             ctx.drawImage(enemy2, enemy2X, enemy2Y)
             enemy2Y += enemy2Speed
+            ctx.drawImage(enemy3, enemy3X, enemy3Y)
+            enemy3Y += enemy3Speed
 
             // Respawn fienden lämnar scenen
             if (enemy1Y > 600) {
@@ -121,6 +137,10 @@
             if (enemy2Y > 600) {
                 enemy2X = 750 * Math.random()
                 enemy2Y = -100 * Math.random()
+            }
+            if (enemy3Y > 600) {
+                enemy3X = 750 * Math.random()
+                enemy3Y = -100 * Math.random()
             }
         }
 
@@ -169,6 +189,41 @@
                 lazerShot.play()
                 ctx.fillStyle = "white"
                 ctx.fillRect(shipX + 31, 0, 2, shipY)
+
+                // Kolla om skott träffar enemy1
+                if (shipX + 32 >= enemy1X && shipX + 32 <= enemy1X + 64 && enemy1Y < shipY) {
+                    explosion.play()
+                    blastTimer = 20
+                    blastX = enemy1X
+                    blastY = enemy1Y
+                    enemy1X = 750 * Math.random()
+                    enemy1Y = -100 * Math.random()
+                }
+                // Kolla om skott träffar enemy2
+                if (shipX + 32 >= enemy2X && shipX + 32 <= enemy2X + 64 && enemy2Y < shipY) {
+                    explosion.play()
+                    blastTimer = 20
+                    blastX = enemy2X
+                    blastY = enemy2Y
+                    enemy2X = 750 * Math.random()
+                    enemy2Y = -100 * Math.random()
+                }
+                // Kolla om skott träffar enemy3
+                if (shipX + 32 >= enemy3X && shipX + 32 <= enemy3X + 64 && enemy3Y < shipY) {
+                    explosion.play()
+                    blastTimer = 20
+                    blastX = enemy3X
+                    blastY = enemy3Y
+                    enemy3X = 750 * Math.random()
+                    enemy3Y = -100 * Math.random()
+                }
+            }
+        }
+
+        function drawBlast() {
+            if (blastTimer > 0) {
+                ctx.drawImage(blast, blastX, blastY)
+                blastTimer--
             }
         }
 
