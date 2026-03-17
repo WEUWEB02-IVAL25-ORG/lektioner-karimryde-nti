@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gameloopen</title>
+    <style>
+        body {
+            background-color: #555;
+            padding: 0;
+            margin: 0;
+        }
+
+        canvas {
+            background-color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="800" height="600"></canvas>
+    <script>
+        const canvas = document.querySelector('canvas')
+        const ctx = canvas.getContext('2d')
+
+        // Ladda in bilder och ljud
+        // Ladda in bilden av rymdskeppet
+        const shipImg = new Image()
+        shipImg.src = "./battleship.png"
+
+        // Ladda in bild av fiende 1
+        const enemyImg1 = new Image()
+        enemyImg1.src = "./ufo.png"
+        // Ladda in bild av fiende 2
+        const enemyImg2 = new Image()
+        enemyImg2.src = "./alien.png"
+        // Ladda in bild av fiende 3
+        const enemyImg3 = new Image()
+        enemyImg3.src = "./monster.png"
+        // Ladda in bild på en explosion
+        const blast = new Image()
+        blast.src = "./blast.png"
+
+        // Ladda in skottljud
+        const lazerShot = new Audio()
+        lazerShot.src = "./lazer-shot.wav"
+        // Ladda in explosionsljud
+        const explosion = new Audio()
+        explosion.src = "./explosion13.wav"
+
+        // Objekten
+        // Player-objekt innehåller sina variabler
+        const ship = {
+            img: shipImg,
+            x: 400 - 32,
+            y: 300,
+            directionH: "",
+            directionV: "",
+            shooting: false
+        }
+
+        // Fiender objekten
+        const enemies = [
+            {
+                img: enemyImg1,
+                x: 750 * Math.random(),
+                y: -100 * Math.random(),
+                speed: 5 * Math.random() + 1
+            },
+            {
+                img: enemyImg2,
+                x: 750 * Math.random(),
+                y: -100 * Math.random(),
+                speed: 5 * Math.random() + 1
+            },
+            {
+                img: enemyImg3,
+                x: 750 * Math.random(),
+                y: -100 * Math.random(),
+                speed: 5 * Math.random() + 1
+            }
+        ]
+
+        // Spelloopen
+        function gameLoop() {
+            // Radera canvas
+            ctx.clearRect(0, 0, 800, 600)
+
+            // D R A W
+            drawPlayer()
+            drawEnemies()
+
+            // U P D A T E
+
+            // Upprepa
+            requestAnimationFrame(gameLoop)
+        }
+        gameLoop()
+
+        /*** Alla metoder ***/
+        // D R A W (rita ut)
+        function drawPlayer() {
+            ctx.drawImage(
+                ship.img,
+                ship.x,
+                ship.y
+            )
+        }
+        function drawEnemies() {
+            enemies.forEach(enemy => {
+                ctx.drawImage(
+                    enemy.img,
+                    enemy.x,
+                    enemy.y
+                )
+            })
+        }
+
+        // U P D A T E (logik)
+
+
+
+    </script>
+</body>
+</html>
