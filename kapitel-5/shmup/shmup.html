@@ -80,6 +80,9 @@
             }
         ]
 
+        // Lyssna på tangeter: pil-vänster/pil-höger
+        keyListener()
+
         // Spelloopen
         function gameLoop() {
             // Radera canvas
@@ -90,6 +93,7 @@
             drawEnemies()
 
             // U P D A T E
+            updatePlayer()
 
             // Upprepa
             requestAnimationFrame(gameLoop)
@@ -116,8 +120,57 @@
         }
 
         // U P D A T E (logik)
+        function updatePlayer() {
+            if (ship.directionH == "R") {
+                ship.x += 5
+            }
+            if (ship.directionH == "L") {
+                ship.x -= 5
+            }
+            if (ship.directionV == "D") {
+                ship.y += 5
+            }
+            if (ship.directionV == "U") {
+                ship.y -= 5
+            }
+        }
+        function keyListener() {
+            window.addEventListener('keydown', function (e) {
+                if (e.code == 'ArrowRight') {
+                    ship.directionH = "R"
+                }
+                if (e.code == 'ArrowLeft') {
+                    ship.directionH = "L"
+                }
+                if (e.code == 'ArrowUp') {
+                    ship.directionV = "U"
+                }
+                if (e.code == 'ArrowDown') {
+                    ship.directionV = "D"
+                }
+                if (e.code == 'Space') {
+                    ship.shooting = true
+                }
+            })
+            window.addEventListener('keyup', function (e) {
+                if (e.code == 'ArrowRight') {
+                    ship.directionH = ""
+                }
+                if (e.code == 'ArrowLeft') {
+                    ship.directionH = ""
+                }
+                if (e.code == 'ArrowUp') {
+                    ship.directionV = ""
+                }
+                if (e.code == 'ArrowDown') {
+                    ship.directionV = ""
+                }
+                if (e.code == 'Space') {
+                    ship.shooting = false
+                }
+            })
 
-
+        }
 
     </script>
 </body>
