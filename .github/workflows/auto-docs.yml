@@ -1,0 +1,47 @@
+name: Generate Educational Docs with Gemini
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    # Ignorera pushar som enbart ändrar markdown-filer för att undvika oändliga loopar
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Ger botten rätt att göra commits
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2 # Behövs för att git diff ska fungera mellan senaste två commits
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install google-generativeai
+
+      - name: Run documentation generator
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python .github/scripts/generate_docs.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add "**dagbok.md" history.md
+          
+          # Undvik att krascha om det inte finns några ändringar att commita
+          git diff --quiet && git diff --staged --quiet || git commit -m "docs: AI-genererad lektionsdagbok och historik [skip ci]"
+          git push
