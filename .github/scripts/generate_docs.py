@@ -10,7 +10,7 @@ if not GEMINI_API_KEY:
     print("Inget GEMINI_API_KEY hittades. Avbryter.")
     exit(1)
 
-MODEL = os.getenv("GEMINI_MODEL", "gemini-2.0-flash")
+MODEL = os.getenv("GEMINI_MODEL", "gemini-3-flash-preview")
 client = genai.Client(api_key=GEMINI_API_KEY)
 
 def get_git_info():
