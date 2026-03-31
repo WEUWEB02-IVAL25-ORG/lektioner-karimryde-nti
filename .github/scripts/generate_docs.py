@@ -1,17 +1,17 @@
 import os
 import subprocess
 import json
-import google.generativeai as genai
+from google import genai
 import datetime
 
 # Konfigurera Gemini
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 if not GEMINI_API_KEY:
     print("Inget GEMINI_API_KEY hittades. Avbryter.")
-    exit(0)
+    exit(1)
 
-genai.configure(api_key=GEMINI_API_KEY)
-model = genai.GenerativeModel('gemini-1.5-flash')
+MODEL = os.getenv("GEMINI_MODEL", "gemini-2.0-flash")
+client = genai.Client(api_key=GEMINI_API_KEY)
 
 def get_git_info():
     # Hämta commit-meddelande och diff för senaste commiten
@@ -82,7 +82,7 @@ def main():
     """
 
     print("Skickar data till Gemini...")
-    response = model.generate_content(prompt)
+    response = client.models.generate_content(model=MODEL, contents=prompt)
     
     # Rensa bort eventuella markdown-kodblock från svaret (```json ... ```)
     response_text = response.text.strip()
